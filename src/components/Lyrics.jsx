@@ -1,40 +1,31 @@
-import React, { useContext } from 'react'
-import { Context } from './context'
-const printdata=(currEle)=>{
-   
-       if(currEle.track==undefined){
-           return(
-               <div className='card'>
-               <h2>{currEle.artist.artist_name}</h2>
-               </div>
-               
-           )
-       }else{
-           return(
-               <div className='card'> 
-                 <h3><strong>TRACK :</strong> {currEle.track.track_name}</h3><br/>
-                 <p><strong> album :</strong> {currEle.track.album_name}</p>
-               </div>
-             
-           )
-       }
-}
-const Lyrics=()=> {
-    const [state]= useContext(Context)
-     console.log(state)
+import axios from 'axios'
+import React from 'react'
+import { useEffect ,useState} from 'react'
+const Lyrics = () => {
+    const [value,setvalue]= useState("")
+    const onChangevalue =(event)=>{
+        setvalue(event.currentTarget.value)
+    }
+    const fetchData =async (event)=>{
+        console.log(event.currentTarget.value);
+        const responce = await axios.get(`track.search?q.track=${value}&apikey=1793a47598edb91bbc80c4015c1023e4`).catch((err)=>{
+            console.log(err);
+        })
+        console.log(responce)
+    }
+    // useEffect(()=>{
+    //     fetchData()
+    // },[])
   return (
     <>
-    <div className="lyrcontainer">
-        {console.log(`now state is ${state}`)}
-        {
-         state.track_list.map((currEle)=>{
-             return(
-                 <>
-                 {printdata(currEle)}
-                 </>
-             )
-         })
-        }
+    <input onChange={onChangevalue} value={value}/>
+    <button  onClick={fetchData}>Search</button>
+    <h1>search results</h1>
+    {
+        
+    }
+    <div className='card'>
+        
     </div>
     </>
   )

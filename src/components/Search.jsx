@@ -1,7 +1,6 @@
-import React, { useState,useEffect , createContext, useContext } from 'react'
+import React, { useState,useContext } from 'react'
 import axios from 'axios'
 import { Context } from './context'
-import Artists from './artists'
 import "./search.css"
 import { useNavigate } from 'react-router-dom'
  const Search = () => {

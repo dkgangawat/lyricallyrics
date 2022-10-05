@@ -1,40 +1,33 @@
 import React, { useContext } from 'react'
+import { NavLink } from 'react-router-dom'
 import { Context } from './context'
-const printdata=(currEle)=>{
-   
-       if(currEle.track==undefined){
-           return(
-               <div className='card'>
-               <h2>{currEle.artist.artist_name}</h2>
-               </div>
-               
-           )
-       }else{
-           return(
-               <div className='card'> 
-                 <h3><strong>TRACK :</strong> {currEle.track.track_name}</h3><br/>
-                 <p><strong> album :</strong> {currEle.track.album_name}</p>
-               </div>
-             
-           )
-       }
-}
+import axios from 'axios'
+
 const Tracks=()=> {
     const [state]= useContext(Context)
      console.log(state)
+    const trackList =state.track_list.map((currEle,index)=>{
+        const {header_image_thumbnail_url,artist_names,full_title,id} = (state.heading==="CHARTS...")? currEle.item :currEle.result
+        return(
+            <div key={index} className="track">
+                <img src={header_image_thumbnail_url} alt="" />
+                <div className='trc-containet'>
+                <p>{full_title}</p>
+                <h3>{artist_names}</h3>
+                <NavLink to={`/lyricallyrics/lyrics/${id}`}>view Lyrics</NavLink>
+                </div>
+            </div>
+        )
+    })
   return (
     <>
-    <div className="lyrcontainer">
-        {console.log(`now state is ${state}`)}
+    <div className="home">
+        <h1 style={{width:"100%"}}>{state.heading}</h1>
+        <div className='tracksList'>
         {
-         state.track_list.map((currEle)=>{
-             return(
-                 <>
-                 {printdata(currEle)}
-                 </>
-             )
-         })
+      trackList
         }
+        </div>
     </div>
     </>
   )

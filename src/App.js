@@ -5,14 +5,18 @@ import Header from "./components/Header.jsx";
 import {ContextController} from './components/context';
 import Footer from './components/footer';
 import Lyrics from './components/Lyrics';
+import {Routes,Route} from 'react-router-dom'
+import DisplayLyrics from './components/DisplayLyrics';
 function App() {
   return (
     <>
     <ContextController>
     <Header/>
-    {/* <Tracks/> */}
-    <Lyrics/>
-    {/* <Footer/> */}
+    <Routes>
+      <Route path="/lyricallyrics" element={<Tracks/>}/>
+      <Route path='/lyricallyrics/lyrics/:id' element={<DisplayLyrics/>}/>
+    </Routes>
+    <Footer/>
     </ContextController>
     </>
     

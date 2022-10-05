@@ -26,21 +26,30 @@ export function ContextController({ children }) {
   const [state, setState] = useState(intialState);
 
   useEffect(() => {
-    axios
-      .get(
-        `chart.tracks.get?page=1&page_size=10&country=in&f_has_lyrics=1&apikey=1793a47598edb91bbc80c4015c1023e4`
-      )
-      .then(res => {
-        // console.log(res.data);
-        setState({
-          track_list: res.data.message.body.track_list,
-          heading: "Top 10 Tracks"
-        });
-      })
-      .catch(err => console.log(err));
+const options = {
+  method: 'GET',
+  url: `https://${process.env.REACT_APP_X_R_HOST}/songs/chart`,
+  params: {time_period: 'day', chart_genre: 'all', per_page: '10', page: '1'},
+  headers: {
+    'X-RapidAPI-Key': `${process.env.REACT_APP_X_R_KEY}`,
+    'X-RapidAPI-Host': `${process.env.REACT_APP_X_R_HOST}`
+  }
+};
+
+axios.request(options).then(function (res) {
+	console.log(res.data);
+  setState( {...state, track_list:res.data.response.chart_items,heading:"CHARTS..."})
+
+}).catch(function (error) {
+	console.error(error);
+});
   }, []);
   return (
+  <>
+  
+    {console.log(state)}
     <Context.Provider value={[state, setState]}>{children}</Context.Provider>
+    </>
   );
 }
  

@@ -1,0 +1,35 @@
+.search{
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+ form{
+    width: 30%;
+}
+.search input{
+    outline: none;
+    padding: 4px;
+    border: none;
+    background-color: #33333E;
+    width: 100%;
+    color: #B5C7D8;
+    font-size: 20px;
+    font-weight: 500;
+}
+.search button{
+    background-color: transparent;
+    position: absolute;
+    right: 0;
+    border: none;
+    padding: 4px;
+}
+.search button svg{
+    width: 20px;
+    height: 20px;
+    fill: #B5C7D8;
+}
+@media only screen and (max-width: 600px) {
+ form{
+    width: calc(80% - 70px );
+ }
+}

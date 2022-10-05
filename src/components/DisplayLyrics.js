@@ -6,10 +6,11 @@ import axios from 'axios';
 import { useState } from 'react';
 import { Context } from './context';
 const DisplayLyrics = () => {
+  let Parser = new DOMParser();
   const {id} = useParams();
     const [song,setSong] = useState({})
     const [media,setMedia]=useState("")
-    const [ytEmbLink,setYtEmbLink] =useState("")
+    const [lyrics,setLyrics]= useState("")
     const fatchData = async ()=>{
       const options = {
         method: 'GET',
@@ -21,11 +22,9 @@ const DisplayLyrics = () => {
       };
       
      await axios.request(options).then(function (res) {
-        console.log(res.data);
         const constiner = document.getElementById("lyrics")
         // console.log(res.data.response.lyrics.lyrics.body.dom);
-        const ly = res.data.response.lyrics.lyrics.body.plain.replace(/(\n)/g,`<br/>`)
-        constiner.innerHTML = ly;
+        setLyrics(res.data.response.lyrics.lyrics.body.plain.replace(/(\n)/g,`<br/>`))
       }).catch(function (error) {
         console.error(error);
       });
@@ -52,17 +51,18 @@ setSong(res.data.response.song)
     },[])
     useEffect(()=>{
       if(song.media!=undefined){
-        console.log("working");
       song.media.map(curr=>{
         if(curr.provider=="youtube")
         setMedia(curr.url.replace("watch?v=","embed/").replace("http","https"))
+        document.getElementById('lyrics').innerHTML= lyrics
       })}
     },[song])
   
 
   return (
     <>
-    <div className='lyrics-header'>
+    {(song.header_image_url==undefined)?"Loading.....":<div>
+       <div className='lyrics-header'>
       <div className='container'>
         <img src={song.header_image_url} alt="song_art_image_url" />
       <h1>{song.full_title}</h1>
@@ -70,10 +70,13 @@ setSong(res.data.response.song)
     </div>
     <div className='lyrcontainer'>
       {/* <h1>{track.item.full_title}</h1> */}
-      <p id='lyrics'></p>
-    <iframe className='youtube'src={media}>
+      <p id='lyrics'>
+        {lyrics}
+      </p>
+    <iframe className='youtube'src={media} >
      </iframe>
-    </div>
+    </div></div>}
+   
     </>
   )
 }

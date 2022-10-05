@@ -43,7 +43,7 @@
     outline: none;
     width: 50%;
     height: 420px;
-
+    border: none;
 
 }
 @media only screen and (max-width: 600px){

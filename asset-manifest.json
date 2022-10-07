@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/lyricallyrics/static/css/main.b3a86472.css",
-    "main.js": "/lyricallyrics/static/js/main.70d19863.js",
+    "main.js": "/lyricallyrics/static/js/main.5f5697d8.js",
     "static/media/logo.png": "/lyricallyrics/static/media/logo.d8937e8fe0e2f83b41a9.png",
     "index.html": "/lyricallyrics/index.html",
     "main.b3a86472.css.map": "/lyricallyrics/static/css/main.b3a86472.css.map",
-    "main.70d19863.js.map": "/lyricallyrics/static/js/main.70d19863.js.map"
+    "main.5f5697d8.js.map": "/lyricallyrics/static/js/main.5f5697d8.js.map"
   },
   "entrypoints": [
     "static/css/main.b3a86472.css",
-    "static/js/main.70d19863.js"
+    "static/js/main.5f5697d8.js"
   ]
 }

@@ -19,35 +19,16 @@ export const Context = React.createContext();
 export function ContextController({ children }) {
   let intialState = {
     track_list: [],
-    heading: ""
+    heading: "",
+    search_query :"",
+    search_reault:[]
     // dispatch: action => this.setState(state => reducer(state, action))
+    
   };
 
   const [state, setState] = useState(intialState);
-
-  useEffect(() => {
-const options = {
-  method: 'GET',
-  url: `https://${process.env.REACT_APP_X_R_HOST}/songs/chart`,
-  params: {time_period: 'day', chart_genre: 'all', per_page: '10', page: '1'},
-  headers: {
-    'X-RapidAPI-Key': `${process.env.REACT_APP_X_R_KEY}`,
-    'X-RapidAPI-Host': `${process.env.REACT_APP_X_R_HOST}`
-  }
-};
-
-axios.request(options).then(function (res) {
-	console.log(res.data);
-  setState( {...state, track_list:res.data.response.chart_items,heading:"CHARTS..."})
-
-}).catch(function (error) {
-	console.error(error);
-});
-  }, []);
   return (
   <>
-  
-    {console.log(state)}
     <Context.Provider value={[state, setState]}>{children}</Context.Provider>
     </>
   );

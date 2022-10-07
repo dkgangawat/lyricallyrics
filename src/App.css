@@ -137,6 +137,23 @@ header .menu-bar .open ,header .menu-bar .close{
     width: 70px;
     height: 70px;
 }
+
+.tracksList .btn{
+    padding: 12px;
+    font-size: 20px;
+    margin: 8px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgb(55, 203, 55);
+    border: 2px solid rgb(55, 203, 55) ;
+    font-weight: 520;
+    border-radius: 8px;
+}
+.tracksList .btn:hover{
+    background-color:#33333E;
+    color: #B5C7D8;
+}
 .trc-containet{
     display: flex;
     width: calc(100% - 70px);

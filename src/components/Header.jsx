@@ -14,14 +14,14 @@ const Header = () => {
     <>
     <header id="header">
       <div className="container">
-        <NavLink to="/lyricallyrics">
+        <NavLink to="/lyricallyrics/">
           <img src={logo} alt="logo" />
         </NavLink>
         
         <ul id="menuUl" className="">
-          <li><NavLink style={{textDecoration:"none",color:"white"}} to="/lyricallyrics">Home</NavLink> </li>
-          <li><NavLink style={{textDecoration:"none",color:"white"}} to="/lyricallyrics">About</NavLink> </li>
-          <li><NavLink style={{textDecoration:"none",color:"white"}} to="/lyricallyrics">Contact</NavLink> </li>
+          <li><NavLink style={{textDecoration:"none",color:"white"}} to="/lyricallyrics/">Home</NavLink> </li>
+          <li><NavLink style={{textDecoration:"none",color:"white"}} to="/lyricallyrics/">About</NavLink> </li>
+          <li><NavLink style={{textDecoration:"none",color:"white"}} to="/lyricallyrics/">Contact</NavLink> </li>
           {/* <li>Search</li> */}
           
         </ul>

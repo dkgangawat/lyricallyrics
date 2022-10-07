@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router-dom'
      e.preventDefault()
      console.log(userInput)
     //  setFinalInput(userInput)
-    Navigate("/lyricallyrics")
+    Navigate("/lyricallyrics/search")
     const options = {
       method: 'GET',
       url: `https://${process.env.REACT_APP_X_R_HOST}/search`,
@@ -28,8 +28,7 @@ import { useNavigate } from 'react-router-dom'
     };
     
    await axios.request(options).then(function (response) {
-      console.log(response.data);
-      setState({track_list:response.data.response.hits,heading:`search reasult for ${userInput}`})
+      setState({...state,search_reault:response.data.response.hits,search_query:`${userInput}`})
       setUserInput("")
     }).catch(function (error) {
       console.error(error);
